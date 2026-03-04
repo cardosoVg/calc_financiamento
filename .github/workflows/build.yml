@@ -1,31 +1,41 @@
-name: Gerar EXE Windows
+name: Build and Release Windows Executable
 
-on: [push] # Roda toda vez que você enviar código
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
 
 jobs:
   build:
-    runs-on: windows-latest # Aqui está a mágica: ele usa um Windows real
+    runs-on: windows-latest
+    permissions:
+      contents: write
 
     steps:
-    - name: Baixar código
-      uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-    - name: Configurar Python
+    - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.12'
 
-    - name: Instalar dependências
+    - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install pyinstaller
 
-    - name: Gerar Executável
-      run: pyinstaller --onefile --windowed --name "SimuladorImobiliario" financiamento3.py
-      # SUBSTITUA "seu_arquivo.py" pelo nome real do seu script
+    - name: Build with PyInstaller
+      run: |
+        pyinstaller --onefile --windowed --name "financiamento" financiamento.py
 
-    - name: Upload do Resultado
-      uses: actions/upload-artifact@v4
+    - name: Create Release
+      uses: softprops/action-gh-release@v2
       with:
-        name: Simulador-Windows
-        path: dist/SimuladorImobiliario.exe
+        files: dist/*.exe
+        tag_name: ${{ github.ref_name }}
+        name: Release ${{ github.ref_name }}
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
