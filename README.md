@@ -12,7 +12,7 @@ Ferramenta simple de simulação de financiamentos, ideal para comparar taxas e 
 ## 🚀 Como usar (Windows)
 
 1. Vá na aba [Releases](https://github.com/cardosoVg/calc-financiamento/releases).
-2. Baixe o arquivo `CalcFinanciamento.exe`.
+2. Baixe o arquivo `financiamento.exe`.
 
 ## 🛠️ Para Desenvolvedores (
 
