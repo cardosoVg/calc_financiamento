@@ -10,7 +10,7 @@ Ferramenta simple de simulação de financiamentos, ideal para comparar taxas e 
 - Ponto de virada entre os preços de SAC e Price
 
 ## 🚀 Como usar (Windows)
-Se você não quer instalar o Python, basta baixar a versão pronta:
+
 1. Vá na aba [Releases](https://github.com/cardosoVg/calc-financiamento/releases).
 2. Baixe o arquivo `CalcFinanciamento.exe`.
 
@@ -21,7 +21,7 @@ Se você não quer instalar o Python, basta baixar a versão pronta:
 git clone https://github.com/cardosoVg/calc_financiamento.git
 cd calc_financiamento
 
-# Instalar dependências (se houver)
+# Instalar dependências 
 pip install -r requirements.txt
 
 # Rodar
